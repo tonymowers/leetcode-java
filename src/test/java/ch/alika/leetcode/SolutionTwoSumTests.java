@@ -16,26 +16,27 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public class SolutionTwoSumTests {
 
-  @ParameterizedTest
-  @EnumSource(TwoSumImplementation.class)
-  void where_not_enough_input_numbers(TwoSumImplementation twoSumFunction) {
-    assertThrows(IllegalArgumentException.class, () -> twoSumFunction.invoke(arrayOfInts(0), 0));
+  private TwoSumImplementation twoSumFunction;
+
+  private int[] twoSum(int[] ints, int target) {
+    return twoSumFunction.invoke(ints,target);
   }
 
   @ParameterizedTest
   @EnumSource(TwoSumImplementation.class)
-  void where_target_sum_not_found(TwoSumImplementation twoSumFunction) {
-    assertThrows(IllegalArgumentException.class, () -> twoSumFunction.invoke(arrayOfInts(0,0), 1));
+  void where_no_two_sum_solution_found(TwoSumImplementation twoSumFunction) {
+    this.twoSumFunction = twoSumFunction;
+    assertThrows(IllegalArgumentException.class, () -> twoSum(intArray(0), 0));
+    assertThrows(IllegalArgumentException.class, () -> twoSum(intArray(0,0), 1));
   }
 
   @ParameterizedTest
   @EnumSource(TwoSumImplementation.class)
-  void where_target_sum_found(TwoSumImplementation twoSumFunction) {
-    assertThat(twoSumFunction.invoke(arrayOfInts(0,0),0),equalAnyOrder(arrayOfInts(0, 1)));
-    assertThat(twoSumFunction.invoke(arrayOfInts(1,2,0),1),equalAnyOrder(arrayOfInts(0,2)));
-    assertThat(twoSumFunction.invoke(arrayOfInts(0,1,1),2),equalAnyOrder(arrayOfInts(1,2)));
-    assertThat(twoSumFunction.invoke(arrayOfInts(0,0,1,1),2),equalAnyOrder(arrayOfInts(3,2)));
-    assertThat(twoSumFunction.invoke(arrayOfInts(1,0,0,1),2),equalAnyOrder(arrayOfInts(0,3)));
+  void where_two_sum_solution_found(TwoSumImplementation twoSumFunction) {
+    this.twoSumFunction = twoSumFunction;
+    assertThat(twoSum(intArray(1, 2), 3), equalAnyOrder(intArray(0, 1)));
+    assertThat(twoSum(intArray(1, 0, 2), 3), equalAnyOrder(intArray(0, 2)));
+    assertThat(twoSum(intArray(0, 1, 2), 3), equalAnyOrder(intArray(1, 2)));
   }
 
   private enum TwoSumImplementation {
@@ -57,7 +58,7 @@ public class SolutionTwoSumTests {
     }
   }
 
-  private static int[] arrayOfInts(int ...a) {
+  private static int[] intArray(int ...a) {
     return a;
   }
 
@@ -65,26 +66,28 @@ public class SolutionTwoSumTests {
     return new IsEqualAnyOrder(numbs);
   }
 
-  public static class IsEqualAnyOrder extends TypeSafeMatcher<int[]> {
+  private static class IsEqualAnyOrder extends TypeSafeMatcher<int[]> {
 
-    private final int[] numbs;
+    private final int[] ints;
 
-    public IsEqualAnyOrder(int[] numbs) {
-      this.numbs = numbs;
+    private IsEqualAnyOrder(int[] ints) {
+      this.ints = ints;
     }
 
     @Override
-    protected boolean matchesSafely(int[] ints) {
-      return isEqualToNumbsPair(ints[0],ints[1]) || isEqualToNumbsPair(ints[1],ints[0]);
+    protected boolean matchesSafely(int[] otherInts) {
+      final int a0 = otherInts[0];
+      final int a1 = otherInts[1];
+      return isEqualTo(a0, a1) || isEqualTo(a1, a0);
+    }
+
+    private boolean isEqualTo(int a0, int a1) {
+      return ints[0] == a0 && ints[1] == a1;
     }
 
     @Override
     public void describeTo(Description description) {
-        equalTo(numbs).describeTo(description);
-    }
-
-    private boolean isEqualToNumbsPair(int a, int b) {
-      return  (a == numbs[0] && b == numbs[1]);
+      equalTo(ints).describeTo(description);
     }
   }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
  *
  * see: https://leetcode.com/problems/two-sum/
  */
-public class SolutionTwoSum {
+public class TwoSum {
 
   public static int[] twoSumBruteForce(int[] ints, int target) {
 

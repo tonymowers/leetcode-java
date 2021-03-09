@@ -41,8 +41,8 @@ public class TwoSumTests {
   }
 
   private enum TwoSumImplementation {
-    BRUTE_FORCE(SolutionTwoSum::twoSumBruteForce),
-    HASH_MAP(SolutionTwoSum::twoSumHashMap);
+    BRUTE_FORCE(TwoSum::twoSumBruteForce),
+    HASH_MAP(TwoSum::twoSumHashMap);
 
     private interface TwoSumFunction {
       int[] invoke(int[] ints, int target);

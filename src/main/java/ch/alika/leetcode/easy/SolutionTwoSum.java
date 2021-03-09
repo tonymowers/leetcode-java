@@ -1,4 +1,4 @@
-package ch.alika.leetcode;
+package ch.alika.leetcode.easy;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,11 @@
-package ch.alika.leetcode;
+package ch.alika.leetcode.easy;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import static ch.alika.leetcode.easy.Helper.intArray;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  *
  * see: https://leetcode.com/problems/two-sum/
  */
-public class SolutionTwoSumTests {
+public class TwoSumTests {
 
   private TwoSumImplementation twoSumFunction;
 
@@ -56,10 +57,6 @@ public class SolutionTwoSumTests {
     public int[] invoke(int[] ints, int target) {
       return twoSumFunction.invoke(ints, target);
     }
-  }
-
-  private static int[] intArray(int ...a) {
-    return a;
   }
 
   private IsEqualAnyOrder equalAnyOrder(int[] numbs) {

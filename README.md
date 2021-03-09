@@ -14,7 +14,9 @@ interviews by companies like Google and Yelp.
 Test Driven Development is a coding discipline where tests are written before the production code. 
 
 Robert Martin describes TDD, in his [article](https://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html) on
-the topic, describes TDD as consisting of two coding cycles.
+the topic, as consisting of two coding cycles:
+- nano-cycle
+- micro-cycle
 
 ### Nano-cycle (second by second)
 

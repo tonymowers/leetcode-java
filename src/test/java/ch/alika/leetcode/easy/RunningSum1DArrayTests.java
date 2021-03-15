@@ -2,7 +2,7 @@ package ch.alika.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static ch.alika.leetcode.easy.Helper.intArray;
+import static ch.alika.leetcode.helper.IntHelpers.intArray;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,5 +24,6 @@ public class RunningSum1DArrayTests {
     // LeetCode test example
     assertThat(runningSum(intArray(3,1,2,10,1)), equalTo(intArray(3,4,6,16,17)));
   }
+
 
 }

@@ -1,3 +1,5 @@
+![build and test](https://github.com/github/docs/actions/workflows/build.yml/badge.svg)
+
 # LeetCode Java TDD
 
 I use this repository to practice applying TDD (test driven development) to 
